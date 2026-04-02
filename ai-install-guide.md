@@ -107,20 +107,52 @@ echo "你的蓝湖Cookie" > cookie
 
 项目内置 8 个平台的 Skill 文件，配合 MCP 可让 AI 直接从蓝湖设计稿生成 UI 代码。
 
-### Claude Code
+**不需要全部安装，只安装你用得到的平台即可。** 请询问用户需要哪些平台，然后只安装对应的 Skill。
 
-```bash
-cp -r skills/lanhu-*-plan ~/.claude/skills/
+### 可选平台
+
+| Skill 名称 | 平台 | 安装命令（Claude Code） |
+|------------|------|------------------------|
+| `lanhu-compose-plan` | Jetpack Compose | `cp -r skills/lanhu-compose-plan ~/.claude/skills/` |
+| `lanhu-xml-plan` | Android XML | `cp -r skills/lanhu-xml-plan ~/.claude/skills/` |
+| `lanhu-flutter-plan` | Flutter | `cp -r skills/lanhu-flutter-plan ~/.claude/skills/` |
+| `lanhu-rn-plan` | React Native | `cp -r skills/lanhu-rn-plan ~/.claude/skills/` |
+| `lanhu-swiftui-plan` | SwiftUI | `cp -r skills/lanhu-swiftui-plan ~/.claude/skills/` |
+| `lanhu-vue-plan` | Vue 3 | `cp -r skills/lanhu-vue-plan ~/.claude/skills/` |
+| `lanhu-html-plan` | HTML + CSS | `cp -r skills/lanhu-html-plan ~/.claude/skills/` |
+| `lanhu-uniapp-plan` | uni-app | `cp -r skills/lanhu-uniapp-plan ~/.claude/skills/` |
+
+### AI 引导话术
+
+安装到这一步时，请询问用户：
+
+```
+Skill 文件可以让我直接从蓝湖设计稿生成对应平台的 UI 代码。
+目前支持以下平台，你需要安装哪些？（可多选，只装用得到的就行）
+
+1. Jetpack Compose（Android）
+2. Android XML
+3. Flutter
+4. React Native
+5. SwiftUI（iOS）
+6. Vue 3
+7. HTML + CSS
+8. uni-app
+
+请告诉我编号，例如 "1, 3" 表示安装 Compose 和 Flutter。
 ```
 
-安装后可使用：
+根据用户选择，只复制对应的 Skill 目录。
+
+### 安装后使用示例
+
 ```
 /lanhu-compose-plan https://lanhuapp.com/web/#/item/project/detailDetach?...&image_id=xxx
 ```
 
 ### 其他客户端
 
-参考对应客户端的 Skill/Plugin 配置方式，将 `skills/` 目录下的 `SKILL.md` 文件导入即可。
+参考对应客户端的 Skill/Plugin 配置方式，将 `skills/` 目录下对应平台的 `SKILL.md` 文件导入即可。
 
 ### 可用的 Skill
 
