@@ -16,6 +16,25 @@
 >
 > 本仓库在此基础上新增了以下功能。
 
+### 💡 推荐安装方式：让 AI 帮你装
+
+直接把下面这段话发给你的 AI 助手（Claude Code / Cursor / Windsurf 等），AI 会自动完成所有安装和配置：
+
+```
+请阅读 https://github.com/dj931567261/lanhu-mcp 项目中的 ai-install-guide.md 文件，
+按照里面的步骤帮我安装和配置这个蓝湖 MCP 服务器。
+```
+
+或者如果你已经克隆了项目：
+
+```
+请阅读当前项目下的 ai-install-guide.md，帮我完成安装和配置。
+```
+
+AI 会自动：创建虚拟环境 → 安装依赖 → 引导你获取 Cookie → 配置 AI 客户端 → 安装 Skill 文件
+
+> 📖 手动安装参考 [AI 助手安装指南](ai-install-guide.md)
+
 ### ⚠️ 连接方式差异
 
 原项目使用 **HTTP SSE** 方式连接（`http://localhost:8000/mcp`），本项目改为 **stdio** 方式，直接通过脚本启动，无需单独运行服务。
@@ -37,25 +56,6 @@
 ```
 
 > Cookie 配置：将蓝湖 Cookie 写入项目根目录的 `cookie` 文件，或设置环境变量 `LANHU_COOKIE`。获取方式参考 [Cookie 获取教程](GET-COOKIE-TUTORIAL.md)。
-
-### 💡 推荐安装方式：让 AI 帮你装
-
-直接把下面这段话发给你的 AI 助手（Claude Code / Cursor / Windsurf 等），AI 会自动完成所有安装和配置：
-
-```
-请阅读 https://github.com/dj931567261/lanhu-mcp 项目中的 ai-install-guide.md 文件，
-按照里面的步骤帮我安装和配置这个蓝湖 MCP 服务器。
-```
-
-或者如果你已经克隆了项目：
-
-```
-请阅读当前项目下的 ai-install-guide.md，帮我完成安装和配置。
-```
-
-AI 会自动：创建虚拟环境 → 安装依赖 → 引导你获取 Cookie → 配置 AI 客户端 → 安装 Skill 文件
-
-> 📖 手动安装参考 [AI 助手安装指南](ai-install-guide.md)
 
 ---
 
