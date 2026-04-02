@@ -1,0 +1,195 @@
+# 🤖 AI 助手安装指南
+
+> **专为 AI 助手设计的安装指导文档**
+> AI 可以根据这个文档一步步引导用户完成安装和配置
+
+---
+
+## 📝 安装检查清单
+
+在开始之前，AI 需要确认用户的系统环境：
+
+```
+[ ] 操作系统：Windows / Mac / Linux
+[ ] 是否安装了 Python 3.10+？(python3 --version)
+[ ] 是否安装了 Git？(git --version)
+[ ] 是否有蓝湖账号？
+[ ] 使用的 AI 客户端是什么？(Claude Code / Cursor / Codex / Cline 等)
+```
+
+---
+
+## 🚀 安装流程
+
+### 步骤 1：下载项目
+
+```bash
+git clone https://github.com/你的仓库地址/lanhu-mcp.git
+cd lanhu-mcp
+```
+
+### 步骤 2：创建虚拟环境并安装依赖
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 步骤 3：配置蓝湖 Cookie
+
+获取 Cookie 后，写入项目根目录的 `cookie` 文件：
+
+```bash
+echo "你的蓝湖Cookie" > cookie
+```
+
+> 📖 Cookie 获取方式参考 [GET-COOKIE-TUTORIAL.md](GET-COOKIE-TUTORIAL.md)
+
+### 步骤 4：配置 AI 客户端
+
+本项目使用 **stdio** 方式连接（非 HTTP），需要在 AI 客户端中配置启动脚本。
+
+---
+
+## 🔧 各客户端配置方式
+
+### Claude Code
+
+编辑 `~/.claude.json`，在 `mcpServers` 中添加：
+
+```json
+{
+  "mcpServers": {
+    "Lanhu-mcp": {
+      "command": "bash",
+      "args": ["/绝对路径/lanhu-mcp/run_lanhu_mcp_stdio.sh"],
+      "env": {
+        "LANHU_MCP_USER_NAME": "你的名字",
+        "LANHU_MCP_USER_ROLE": "Developer"
+      }
+    }
+  }
+}
+```
+
+### Cursor
+
+在 Cursor 设置中找到 MCP 配置，添加：
+
+```json
+{
+  "mcpServers": {
+    "Lanhu-mcp": {
+      "command": "bash",
+      "args": ["/绝对路径/lanhu-mcp/run_lanhu_mcp_stdio.sh"],
+      "env": {
+        "LANHU_MCP_USER_NAME": "你的名字",
+        "LANHU_MCP_USER_ROLE": "Developer"
+      }
+    }
+  }
+}
+```
+
+### Windsurf / Cline / 其他支持 MCP 的客户端
+
+配置方式类似，核心参数：
+- `command`: `"bash"`
+- `args`: `["/绝对路径/lanhu-mcp/run_lanhu_mcp_stdio.sh"]`
+- `env`: 可选，设置用户名和角色
+
+> ⚠️ **注意**：`args` 中必须使用**绝对路径**，不能用相对路径或 `~`。
+
+---
+
+## 🧩 安装 Skill（可选，推荐）
+
+项目内置 8 个平台的 Skill 文件，配合 MCP 可让 AI 直接从蓝湖设计稿生成 UI 代码。
+
+### Claude Code
+
+```bash
+cp -r skills/lanhu-*-plan ~/.claude/skills/
+```
+
+安装后可使用：
+```
+/lanhu-compose-plan https://lanhuapp.com/web/#/item/project/detailDetach?...&image_id=xxx
+```
+
+### 其他客户端
+
+参考对应客户端的 Skill/Plugin 配置方式，将 `skills/` 目录下的 `SKILL.md` 文件导入即可。
+
+### 可用的 Skill
+
+| Skill 名称 | 输出平台 |
+|------------|----------|
+| `lanhu-compose-plan` | Jetpack Compose |
+| `lanhu-xml-plan` | Android XML |
+| `lanhu-flutter-plan` | Flutter |
+| `lanhu-rn-plan` | React Native |
+| `lanhu-swiftui-plan` | SwiftUI |
+| `lanhu-vue-plan` | Vue 3 |
+| `lanhu-html-plan` | HTML + CSS |
+| `lanhu-uniapp-plan` | uni-app |
+
+---
+
+## 🍪 Cookie 获取简要步骤
+
+1. 打开 https://lanhuapp.com 并登录
+2. 按 `F12` 打开开发者工具
+3. 切换到 **Network** 标签
+4. 刷新页面（按 F5）
+5. 点击任意请求，找到 **Request Headers** 下的 **Cookie**
+6. 复制整个 Cookie 值，写入 `cookie` 文件
+
+> 📖 详细图文教程参考 [GET-COOKIE-TUTORIAL.md](GET-COOKIE-TUTORIAL.md)
+
+---
+
+## 🤖 AI 自动化安装能力
+
+### AI 可以做的
+- ✅ 执行命令下载项目
+- ✅ 创建虚拟环境、安装依赖
+- ✅ 修改 AI 客户端配置文件
+- ✅ 复制 Skill 文件到对应目录
+- ✅ 验证安装是否成功
+
+### 需要用户配合的
+- ❌ 获取蓝湖 Cookie（浏览器安全限制，需手动操作）
+- ❌ 登录蓝湖账号
+
+---
+
+## ✅ 验证安装成功
+
+配置完成后，重启 AI 客户端，然后尝试：
+
+```
+帮我看看这个蓝湖设计稿：https://lanhuapp.com/web/#/item/project/stage?tid=xxx&pid=xxx
+```
+
+如果 AI 能正常返回设计图列表，说明安装成功。
+
+---
+
+## 🆘 常见问题
+
+### Q: Cookie 过期了怎么办？
+重新登录蓝湖网页版，按上述步骤获取新 Cookie，覆盖写入 `cookie` 文件，重启 AI 客户端即可。
+
+### Q: 提示找不到 run_lanhu_mcp_stdio.sh？
+检查配置中的路径是否为**绝对路径**，例如 `/Users/yourname/lanhu-mcp/run_lanhu_mcp_stdio.sh`。
+
+### Q: Windows 下 bash 命令不可用？
+Windows 用户需要安装 Git Bash 或 WSL，或者直接用 Python 启动：
+```json
+{
+  "command": "python",
+  "args": ["/绝对路径/lanhu-mcp/lanhu_mcp_server.py"]
+}
+```

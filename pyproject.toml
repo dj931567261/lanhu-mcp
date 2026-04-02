@@ -1,0 +1,159 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lanhu-mcp-server"
+version = "1.0.0"
+description = "A powerful MCP server for automatically extracting and analyzing Lanhu design documents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Lanhu MCP Team", email = "dsphper@gmail.com"}
+]
+maintainers = [
+    {name = "Lanhu MCP Team", email = "dsphper@gmail.com"}
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "lanhu",
+    "axure",
+    "design",
+    "prototype",
+    "ai",
+    "collaboration",
+    "requirements-analysis"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Documentation",
+]
+dependencies = [
+    "fastmcp>=0.2.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+    "playwright>=1.48.0",
+    "lxml>=5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "isort>=5.12.0",
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+]
+security = [
+    "bandit>=1.7.5",
+    "safety>=2.3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/dsphper/lanhu-mcp"
+Documentation = "https://github.com/dsphper/lanhu-mcp#readme"
+Repository = "https://github.com/dsphper/lanhu-mcp"
+"Bug Tracker" = "https://github.com/dsphper/lanhu-mcp/issues"
+Changelog = "https://github.com/dsphper/lanhu-mcp/blob/main/CHANGELOG.md"
+"Source Code" = "https://github.com/dsphper/lanhu-mcp"
+
+[project.scripts]
+lanhu-mcp = "lanhu_mcp_server:main"
+
+[tool.setuptools]
+py-modules = ["lanhu_mcp_server"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lanhu_mcp_server*"]
+
+[tool.black]
+line-length = 120
+target-version = ['py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | data
+  | logs
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip_gitignore = true
+known_first_party = ["lanhu_mcp_server"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --cov=. --cov-report=term-missing --cov-report=html"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "tests/*",
+    "venv/*",
+    "*/site-packages/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if False:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv", "data", "logs"]
+skips = ["B101", "B601"]
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = ["E203", "E266", "E501", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+    ".venv",
+    "venv",
+    "data",
+    "logs",
+]
+max-complexity = 10
+

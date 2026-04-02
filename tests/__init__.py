@@ -1,0 +1,2 @@
+# Lanhu MCP Server Tests
+

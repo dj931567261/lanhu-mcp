@@ -1,0 +1,5 @@
+policy:
+  allow_implicit_invocation: false
+interface:
+  display_name: "Lanhu → Android XML Plan"
+  short_description: "Lanhu URL → XML layouts with strict dimen mapping and 7-set dimens sync"

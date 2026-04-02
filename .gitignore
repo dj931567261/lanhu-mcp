@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.venv/
+venv/
+.env
+uv.lock
+
+# Sensitive
+cookie
+
+# Test/coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Runtime data
+logs/
+data/
+
+# Docker (removed)
+.dockerignore
+
+# Claude Code local settings
+.claude/
+
+# Editors
+.DS_Store
+.idea/
+.vscode/

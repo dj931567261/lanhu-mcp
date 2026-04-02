@@ -1,0 +1,7 @@
+interface:
+  display_name: "Lanhu RN Plan"
+  short_description: "基于蓝湖 image_id 输出 React Native TSX 页面规划"
+  default_prompt: "使用 $lanhu-rn-plan 基于这个蓝湖设计链接输出阶段 1 和阶段 2 的 React Native TSX 页面规划。"
+
+policy:
+  allow_implicit_invocation: false
