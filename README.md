@@ -88,6 +88,8 @@ args = ["/c", "C:\\path\\to\\lanhu-mcp\\run_lanhu_mcp_stdio.bat"]
 
 > Cookie 配置：将蓝湖 Cookie 写入项目根目录的 `cookie` 文件，或设置环境变量 `LANHU_COOKIE`。获取方式参考 [Cookie 获取教程](GET-COOKIE-TUTORIAL.md)。
 
+> ⚠️ **关于链接中的 `tid` 参数**：蓝湖 URL 必须包含 `tid`（团队 ID）和 `pid`（项目 ID）才能正常使用。如果提示缺少 `tid`，请在蓝湖网页上回退到首页，再依次点击团队 → 项目 → 设计稿进入，此时浏览器地址栏中的 URL 就会包含完整的 `tid` 和 `pid` 参数。
+
 ### 🎯 使用方式
 
 安装完成后，在 AI 对话中使用对应平台的 Skill 名称 + 蓝湖设计图链接，即可生成 UI 代码：
