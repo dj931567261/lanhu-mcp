@@ -249,4 +249,4 @@ lanhu-mcp/
 
 MIT License — 详见 [LICENSE](LICENSE)
 
-<!-- Last checked: 2026-11-22 03:43 -->
+<!-- Last checked: 2026-11-22 12:03 -->
